@@ -1,10 +1,9 @@
 [project]
-name = "test"
+name = "Music Combiner"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
-    "pydub>=0.25.1",
     "tqdm>=4.67.1",
 ]
