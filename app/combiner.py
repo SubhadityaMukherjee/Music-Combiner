@@ -8,10 +8,6 @@ import argparse
 AUDIO_EXTS = (".mp3", ".wav", ".flac", ".m4a", ".ogg")
 
 
-def run_ffmpeg(cmd):
-    subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
-
-
 def process_album(args):
     folder_path, output_path, folder_name = args
 
@@ -23,7 +19,6 @@ def process_album(args):
     # Use first track as metadata + cover-art source
     first_track = os.path.join(folder_path, files[0])
 
-    # clean any old list files
     list_file_path = os.path.join(folder_path, f"list_{folder_name}.txt")
     with open(list_file_path, "w") as f:
         for file in files:
@@ -66,7 +61,12 @@ def process_album(args):
     ]
 
     try:
-        run_ffmpeg(cmd)
+        subprocess.run(
+            cmd,
+            check=True,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.STDOUT,
+        )
         status = "Success"
     except subprocess.CalledProcessError:
         status = "Error"
