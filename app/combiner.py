@@ -9,6 +9,9 @@ AUDIO_EXTS = (".mp3", ".wav", ".flac", ".m4a", ".ogg")
 
 
 def process_album(args):
+    """
+    Runs ffmpeg to combine the songs, given a folder structure and audio extensions
+    """
     folder_path, output_path, folder_name = args
 
     files = sorted(f for f in os.listdir(folder_path) if f.lower().endswith(AUDIO_EXTS))
@@ -78,6 +81,9 @@ def process_album(args):
 
 
 def main(parent_folder):
+    """
+    Main function to process all the albums
+    """
     output_dir = os.path.join(parent_folder, "merged_tracks")
     os.makedirs(output_dir, exist_ok=True)
 
